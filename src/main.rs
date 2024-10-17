@@ -74,9 +74,9 @@ struct Args {
     // - single
     // - point
     // - multi
-    // - complexpoint
+    // - spilt
     #[arg(long, default_value = "single")]
-    bioma_mutation_type: String,
+    mutation_type: String,
 }
 
 
@@ -107,20 +107,20 @@ fn bioma_bool(args: Args) {
         tournament_size: 0,
         number_functions: function_set.len(),
         fitness_threshold,
-        BIOMA_nbr_mutations: args.mutation_multi_n,
-        BIOMA_prob_active_mutation: args.split_mutation_rate_active,
-        BIOMA_prob_inactive_mutation: args.split_mutation_rate_inactive,
+        multi_n_number_mutations: args.mutation_multi_n,
+        split_mutation_rate_active: args.split_mutation_rate_active,
+        split_mutation_rate_inactive: args.split_mutation_rate_inactive,
     };
 
     let node_mutation_op = Rc::new(NodeMutationStandard::new());
     let chromosome_active_op = Rc::new(ChromosomeFindActiveNodesStandard::new());
 
     let chromosome_mutation_op: Rc<Box<dyn ChromosomeMutationTrait>>;
-    if args.bioma_mutation_type == "single" {
+    if args.mutation_type == "single" {
         chromosome_mutation_op = Rc::new(ChromosomeMutationSingle::new());
-    } else if args.bioma_mutation_type == "point" {
+    } else if args.mutation_type == "point" {
         chromosome_mutation_op = Rc::new(ChromosomeMutationPoint::new());
-    } else if args.bioma_mutation_type == "multi" {
+    } else if args.mutation_type == "multi" {
         chromosome_mutation_op = Rc::new(ChromosomeMutationMultiN::new());
     } else {
         chromosome_mutation_op = Rc::new(ChromosomeMutationSplit::new());
@@ -139,7 +139,7 @@ fn bioma_bool(args: Args) {
     let save_path = Path::new("")
         .join("Experiments_Output_boolean")
         .join(format!("dataset_{}", args.dataset))
-        .join(format!("{}", args.bioma_mutation_type))
+        .join(format!("{}", args.mutation_type))
         .join(format!("number_nodes_{}_prob_active_{}_inactive_{}_multi_{}_point_{}", args.nbr_nodes, args.split_mutation_rate_active, args.split_mutation_rate_inactive, args.mutation_multi_n, args.mutation_rate));
 
     fs::create_dir_all(save_path.clone()).unwrap();
@@ -209,20 +209,20 @@ fn bioma_f32(args: Args) {
         tournament_size: 0,
         number_functions: function_set.len(),
         fitness_threshold,
-        BIOMA_nbr_mutations: args.mutation_multi_n,
-        BIOMA_prob_active_mutation: args.split_mutation_rate_active,
-        BIOMA_prob_inactive_mutation: args.split_mutation_rate_inactive,
+        multi_n_number_mutations: args.mutation_multi_n,
+        split_mutation_rate_active: args.split_mutation_rate_active,
+        split_mutation_rate_inactive: args.split_mutation_rate_inactive,
     };
 
     let node_mutation_op = Rc::new(NodeMutationStandard::new());
     let chromosome_active_op = Rc::new(ChromosomeFindActiveNodesStandard::new());
 
     let chromosome_mutation_op: Rc<Box<dyn ChromosomeMutationTrait>>;
-    if args.bioma_mutation_type == "single" {
+    if args.mutation_type == "single" {
         chromosome_mutation_op = Rc::new(ChromosomeMutationSingle::new());
-    } else if args.bioma_mutation_type == "point" {
+    } else if args.mutation_type == "point" {
         chromosome_mutation_op = Rc::new(ChromosomeMutationPoint::new());
-    } else if args.bioma_mutation_type == "multi" {
+    } else if args.mutation_type == "multi" {
         chromosome_mutation_op = Rc::new(ChromosomeMutationMultiN::new());
     } else {
         chromosome_mutation_op = Rc::new(ChromosomeMutationSplit::new());
@@ -241,7 +241,7 @@ fn bioma_f32(args: Args) {
     let save_path = Path::new("")
         .join("Experiments_Output_regression")
         .join(format!("dataset_{}", args.dataset))
-        .join(format!("{}", args.bioma_mutation_type))
+        .join(format!("{}", args.mutation_type))
         .join(format!("number_nodes_{}_prob_active_{}_inactive_{}_multi_{}_point_{}", args.nbr_nodes, args.split_mutation_rate_active, args.split_mutation_rate_inactive, args.mutation_multi_n, args.mutation_rate));
 
     fs::create_dir_all(save_path.clone()).unwrap();

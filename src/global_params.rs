@@ -18,9 +18,9 @@ pub struct CgpParameters {
     pub tournament_size: usize,
     pub number_functions: usize,
     pub fitness_threshold: f32,
-    pub BIOMA_nbr_mutations: usize,
-    pub BIOMA_prob_active_mutation: f32,
-    pub BIOMA_prob_inactive_mutation: f32,
+    pub multi_n_number_mutations: usize,
+    pub split_mutation_rate_active: f32,
+    pub split_mutation_rate_inactive: f32,
 }
 
 

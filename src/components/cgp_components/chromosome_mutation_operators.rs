@@ -119,7 +119,7 @@ impl ChromosomeMutationTrait for ChromosomeMutationMultiN {
                 mutated_active_nodes_counter += 1;
             }
 
-            if mutated_active_nodes_counter >= chromosome.params.BIOMA_nbr_mutations {
+            if mutated_active_nodes_counter >= chromosome.params.multi_n_number_mutations {
                 break;
             }
         }
@@ -149,11 +149,11 @@ impl ChromosomeMutationTrait for ChromosomeMutationSplit {
             let mut mutate_flag = false;
             // Check if a node is active or not
             if chromosome.active_nodes.contains(&node_id) {
-                if rand_val <= chromosome.params.BIOMA_prob_active_mutation {
+                if rand_val <= chromosome.params.split_mutation_rate_active {
                     mutate_flag = true;
                 }
             } else {
-                if rand_val <= chromosome.params.BIOMA_prob_inactive_mutation {
+                if rand_val <= chromosome.params.split_mutation_rate_inactive {
                     mutate_flag = true
                 }
             }
