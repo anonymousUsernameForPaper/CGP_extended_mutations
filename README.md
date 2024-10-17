@@ -38,16 +38,16 @@ You can configure the run via following command line arguments:
   - "f32"
   - "bool   
 - `dataset`
-  - which dataset to use. For Boolean:
-        0: Parity
-        1: Encode
-        2: Decode
-        3: Multiply
-  - for symbolic regression:
-        0: nguyen_7
-        1: koza_3
-        2: pagie_1
-        3: keijzer_6
+  - which dataset to use. For Boolean:  
+        0: Parity  
+        1: Encode  
+        2: Decode  
+        3: Multiply  
+  - for symbolic regression:  
+        0: nguyen_7  
+        1: koza_3  
+        2: pagie_1  
+        3: keijzer_6  
   - default: 0
     
 - `mutation_type`
